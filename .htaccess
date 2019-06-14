@@ -1,0 +1,25 @@
+
+# HTID:9603763: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:9603763:
+#remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
+ErrorDocument 404 /error.php
+Options -Indexes
+
+php_value upload_max_filesize 500M
+php_value post_max_size 500M
+php_value max_execution_time 3000
+php_value max_input_time 3000
+
+RewriteEngine On
+
+RewriteCond %{HTTPS} off
+
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteRule ^list/([A-Za-z0-9-]+)$ lists.php?id=$1
+RewriteRule ^view/([A-Za-z0-9-]+)$ viewer.php?id=$1
+RewriteRule ^([0-9-]+)$ index.php?id=$1
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
