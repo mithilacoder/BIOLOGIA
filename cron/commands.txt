@@ -1,0 +1,4 @@
+/usr/local/bin/php /home/biologia/public_html/cron/cron_backgrounds.php
+
+
+/usr/local/bin/php /home/biologia/public_html/cron/cron_facts.php
